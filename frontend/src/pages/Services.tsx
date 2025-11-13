@@ -1,0 +1,11 @@
+const Services = () => {
+  return (
+    <div className="min-h-screen">
+      <h1 className="text-4xl font-bold text-center py-8">Our Services</h1>
+      <p className="text-center text-gray-600">Explore the services we offer</p>
+    </div>
+  );
+};
+
+export default Services;
+
