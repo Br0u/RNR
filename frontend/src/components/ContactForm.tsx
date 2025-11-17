@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+// import api from '../api/axios';
 
 interface ContactFormData {
   name: string;
@@ -28,18 +29,85 @@ const ContactForm = () => {
     resolver: yupResolver(schema),
   });
 
+  /**
+   * Submit contact form to backend API
+   * 
+   * Backend API Integration:
+   * 
+   * POST /api/appointments
+   * - Creates a new appointment/contact request
+   * - Request Body: {
+   *     name: string,
+   *     phone: string,
+   *     email: string,
+   *     serviceType: string,
+   *     message: string,
+   *     photo?: File (optional - if file upload is needed)
+   *   }
+   * 
+   * - Response: {
+   *     success: boolean,
+   *     message: string,
+   *     appointment: {
+   *       _id: string,
+   *       name: string,
+   *       phone: string,
+   *       email: string,
+   *       serviceType: string,
+   *       message: string,
+   *       status: 'pending' | 'contacted' | 'completed',
+   *       createdAt: Date
+   *     }
+   *   }
+   * 
+   * Error Handling:
+   * - 400: Validation error (show field-specific errors)
+   * - 500: Server error (show generic error message)
+   * 
+   * Example API call (uncomment when backend is ready):
+   * 
+   * const response = await api.post('/api/appointments', data);
+   * 
+   * For file upload (if photo is needed):
+   * const formData = new FormData();
+   * formData.append('name', data.name);
+   * formData.append('phone', data.phone);
+   * formData.append('email', data.email);
+   * formData.append('serviceType', data.serviceType);
+   * formData.append('message', data.message);
+   * if (photoFile) {
+   *   formData.append('photo', photoFile);
+   * }
+   * const response = await api.post('/api/appointments', formData, {
+   *   headers: { 'Content-Type': 'multipart/form-data' }
+   * });
+   */
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // TODO: Connect to backend API endpoint
-      console.log('Form data:', data);
+      // TODO: Uncomment when backend is ready
+      // const response = await api.post('/api/appointments', data);
+      // console.log('Appointment created:', response.data);
       
-      // Simulate API call
+      // Temporary: Simulate API call
+      console.log('Form data:', data);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       
       alert('Thank you! Your message has been sent successfully.');
       reset();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting form:', error);
+      
+      // TODO: Handle specific error types when backend is ready
+      // if (error.response?.status === 400) {
+      //   // Validation errors
+      //   const errors = error.response.data.errors;
+      //   // Display field-specific errors
+      //   alert('Please check your form and try again.');
+      // } else {
+      //   // Generic error
+      //   alert('Something went wrong. Please try again.');
+      // }
+      
       alert('Something went wrong. Please try again.');
     }
   };
