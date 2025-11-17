@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import TestimonialCard from '../components/TestimonialCard';
 // import api from '../api/axios';
 

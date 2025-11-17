@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import ProjectGalleryGrid from '../components/ProjectGalleryGrid';
 // import api from '../api/axios';
 

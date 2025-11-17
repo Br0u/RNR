@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import ServicesPreview from '../components/ServicesPreview';
 // import api from '../api/axios';
